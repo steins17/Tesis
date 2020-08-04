@@ -9,6 +9,8 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -142,49 +144,100 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      preguntas: [{
+        nombre: "nivel 1",
+        foto: "",
+        audio: "a.vwm",
+        subnivel: [{
+          nombre: "subnivel 1",
+          foto: "",
+          audio: "",
+          preguntas: [{
+            nombre: "uno",
+            descripcion: "uno",
+            foto: "",
+            audio: ""
+          }, {
+            nombre: "dos",
+            descripcion: "dos",
+            foto: "",
+            audio: ""
+          }]
+        }, {
+          nombre: "subnivel 2",
+          foto: "",
+          audio: "",
+          preguntas: [{
+            nombre: "uno",
+            descripcion: "uno",
+            foto: "",
+            audio: ""
+          }, {
+            nombre: "dos",
+            descripcion: "dos",
+            foto: "",
+            audio: ""
+          }]
+        }]
+      }, {
+        nombre: "nivel 2",
+        descripcion: "nivel 2",
+        subnivel: [{
+          nombre: "subnivel 3",
+          descripcion: "subnivel 3",
+          foto: null,
+          audio: null,
+          preguntas: [{
+            nombre: "uno",
+            descripcion: "uno",
+            foto: "imagenes/b.png",
+            tipo_campo: 1,
+            audio: null
+          }, {
+            nombre: "dos",
+            descripcion: "dos",
+            foto: "imagenes/b.png",
+            tipo_campo: 2,
+            audio: null
+          }]
+        }, {
+          nombre: "subnivel 4",
+          foto: null,
+          audio: null,
+          preguntas: [{
+            nombre: "uno",
+            descripcion: "uno",
+            foto: null,
+            audio: null
+          }, {
+            nombre: "dos",
+            descripcion: "dos",
+            foto: null,
+            audio: null
+          }]
+        }]
+      }]
+    };
+  },
+  methods: {
+    llamarpreguntas: function llamarpreguntas() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/llamarpreguntas").then(function (_ref) {
+        var data = _ref.data;
+        _this.preguntas = data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {//this.llamarpreguntas();
+  }
+});
 
 /***/ }),
 
@@ -212,27 +265,29 @@ var render = function() {
       _c(
         "vs-tabs",
         { attrs: { color: "black", alignment: "fixed" } },
-        [
-          _c(
+        _vm._l(_vm.preguntas, function(nivel, index1) {
+          return _c(
             "vs-tab",
             {
-              attrs: { label: "Letras" },
+              key: index1,
+              attrs: { label: nivel.nombre },
               on: {
                 click: function($event) {
                   _vm.colorx = "#8B0000"
                 }
               }
             },
-            [
-              _c(
+            _vm._l(nivel.subnivel, function(subnivel, index2) {
+              return _c(
                 "vs-collapse",
+                { key: index2 },
                 [
                   _c(
                     "vs-collapse-item",
                     { attrs: { "icon-arrow": "label" } },
                     [
                       _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-                        _vm._v("Ejercicio 1")
+                        _vm._v(_vm._s(subnivel.nombre))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -252,10 +307,11 @@ var render = function() {
                       _c(
                         "vs-row",
                         { attrs: { "vs-justify": "center" } },
-                        [
-                          _c(
+                        _vm._l(subnivel.preguntas, function(pregunta, index3) {
+                          return _c(
                             "vs-col",
                             {
+                              key: index3,
                               attrs: {
                                 type: "flex",
                                 "vs-justify": "center",
@@ -279,222 +335,49 @@ var render = function() {
                                     },
                                     [
                                       _c("h5", [
-                                        _vm._v("Mayúscula - Minúscula")
+                                        _vm._v(_vm._s(pregunta.nombre))
                                       ])
                                     ]
                                   ),
                                   _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { attrs: { slot: "media" }, slot: "media" },
-                                    [
-                                      _c("img", {
-                                        attrs: { src: "imagenes/b.png" }
-                                      })
-                                    ]
-                                  ),
+                                  pregunta.tipo_campo == 1
+                                    ? [
+                                        pregunta.foto
+                                          ? _c(
+                                              "div",
+                                              {
+                                                attrs: { slot: "media" },
+                                                slot: "media"
+                                              },
+                                              [
+                                                _c("img", {
+                                                  attrs: { src: pregunta.foto }
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    : [
+                                        _c("vs-input", {
+                                          attrs: {
+                                            success: true,
+                                            "success-text": "The text is valid",
+                                            placeholder: "Text"
+                                          }
+                                        })
+                                      ],
                                   _vm._v(" "),
                                   _c("div", {
                                     attrs: { slot: "footer" },
                                     slot: "footer"
                                   })
-                                ]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "vs-col",
-                            {
-                              attrs: {
-                                type: "flex",
-                                "vs-justify": "center",
-                                "vs-align": "center",
-                                "vs-w": "2"
-                              }
-                            },
-                            [
-                              _c(
-                                "vs-card",
-                                {
-                                  staticClass: "cardx",
-                                  attrs: { actionable: "" }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      attrs: { slot: "header" },
-                                      slot: "header"
-                                    },
-                                    [
-                                      _c("h5", [
-                                        _vm._v("Mayúscula - Minúscula")
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { attrs: { slot: "media" }, slot: "media" },
-                                    [
-                                      _c("img", {
-                                        attrs: { src: "imagenes/d.png" }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", {
-                                    attrs: { slot: "footer" },
-                                    slot: "footer"
-                                  })
-                                ]
+                                ],
+                                2
                               )
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "vs-collapse",
-                [
-                  _c(
-                    "vs-collapse-item",
-                    { attrs: { "icon-arrow": "label" } },
-                    [
-                      _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-                        _vm._v("Ejercicio 2")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "vs-row",
-                        { attrs: { "vs-justify": "center" } },
-                        [
-                          _c("vs-button", {
-                            staticClass: "center",
-                            attrs: { type: "gradient", icon: "contactless" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "vs-row",
-                        { attrs: { "vs-justify": "center" } },
-                        [
-                          _c(
-                            "vs-col",
-                            {
-                              attrs: {
-                                type: "flex",
-                                "vs-justify": "center",
-                                "vs-align": "center",
-                                "vs-w": "2"
-                              }
-                            },
-                            [
-                              _c(
-                                "vs-card",
-                                {
-                                  staticClass: "cardx",
-                                  attrs: { actionable: "" }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      attrs: { slot: "header" },
-                                      slot: "header"
-                                    },
-                                    [
-                                      _c("h5", [
-                                        _vm._v("Mayúscula - Minúscula")
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { attrs: { slot: "media" }, slot: "media" },
-                                    [
-                                      _c("img", {
-                                        attrs: { src: "imagenes/p.png" }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", {
-                                    attrs: { slot: "footer" },
-                                    slot: "footer"
-                                  })
-                                ]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "vs-col",
-                            {
-                              attrs: {
-                                type: "flex",
-                                "vs-justify": "center",
-                                "vs-align": "center",
-                                "vs-w": "2"
-                              }
-                            },
-                            [
-                              _c(
-                                "vs-card",
-                                {
-                                  staticClass: "cardx",
-                                  attrs: { actionable: "" }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      attrs: { slot: "header" },
-                                      slot: "header"
-                                    },
-                                    [
-                                      _c("h5", [
-                                        _vm._v("Mayúscula - Minúscula")
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { attrs: { slot: "media" }, slot: "media" },
-                                    [
-                                      _c("img", {
-                                        attrs: { src: "imagenes/q.png" }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", {
-                                    attrs: { slot: "footer" },
-                                    slot: "footer"
-                                  })
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
+                        }),
                         1
                       )
                     ],
@@ -503,365 +386,10 @@ var render = function() {
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("vs-tab", {
-            attrs: { label: "Sílabas" },
-            on: {
-              click: function($event) {
-                _vm.colorx = "#8B0000"
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "vs-tab",
-            {
-              attrs: { label: "Oraciones" },
-              on: {
-                click: function($event) {
-                  _vm.colorx = "#8B0000"
-                }
-              }
-            },
-            [
-              _c(
-                "vs-collapse",
-                [
-                  _c(
-                    "vs-collapse-item",
-                    { attrs: { "icon-arrow": "label" } },
-                    [
-                      _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-                        _vm._v("Ejercicio 1")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "vs-row",
-                        { attrs: { "vs-justify": "center" } },
-                        [
-                          _c(
-                            "vs-col",
-                            {
-                              attrs: {
-                                type: "flex",
-                                "vs-justify": "center",
-                                "vs-align": "center",
-                                "vs-w": "6"
-                              }
-                            },
-                            [
-                              _c(
-                                "vs-card",
-                                {
-                                  staticClass: "cardx",
-                                  attrs: { actionable: "" }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      attrs: { slot: "header" },
-                                      slot: "header"
-                                    },
-                                    [_c("h3", [_vm._v("Separa las oraciones")])]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", [
-                                    _c(
-                                      "span",
-                                      [
-                                        _c("center", [
-                                          _vm._v("Miperroladramucho")
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "vs-row",
-                                { attrs: { "vs-justify": "center" } },
-                                [
-                                  _c("vs-input", {
-                                    attrs: {
-                                      success: true,
-                                      "success-text": "The text is valid",
-                                      placeholder: "Text"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "vs-collapse",
-                [
-                  _c(
-                    "vs-collapse-item",
-                    { attrs: { "icon-arrow": "label" } },
-                    [
-                      _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-                        _vm._v("Ejercicio 2")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "vs-row",
-                        { attrs: { "vs-justify": "center" } },
-                        [
-                          _c(
-                            "vs-col",
-                            {
-                              attrs: {
-                                type: "flex",
-                                "vs-justify": "center",
-                                "vs-align": "center",
-                                "vs-w": "6"
-                              }
-                            },
-                            [
-                              _c(
-                                "vs-card",
-                                {
-                                  staticClass: "cardx",
-                                  attrs: { actionable: "" }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      attrs: { slot: "header" },
-                                      slot: "header"
-                                    },
-                                    [_c("h3", [_vm._v("Separa las oraciones")])]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", [
-                                    _c(
-                                      "span",
-                                      [
-                                        _c("center", [
-                                          _vm._v("Borjatienepecas")
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "vs-row",
-                                { attrs: { "vs-justify": "center" } },
-                                [
-                                  _c("vs-input", {
-                                    attrs: {
-                                      success: true,
-                                      "success-text": "The text is valid",
-                                      placeholder: "Text"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "vs-collapse",
-                [
-                  _c(
-                    "vs-collapse-item",
-                    { attrs: { "icon-arrow": "label" } },
-                    [
-                      _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-                        _vm._v("Ejercicio 3")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "vs-row",
-                        { attrs: { "vs-justify": "center" } },
-                        [
-                          _c(
-                            "vs-col",
-                            {
-                              attrs: {
-                                type: "flex",
-                                "vs-justify": "center",
-                                "vs-align": "center",
-                                "vs-w": "6"
-                              }
-                            },
-                            [
-                              _c(
-                                "vs-card",
-                                {
-                                  staticClass: "cardx",
-                                  attrs: { actionable: "" }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      attrs: { slot: "header" },
-                                      slot: "header"
-                                    },
-                                    [_c("h3", [_vm._v("Separa las oraciones")])]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", [
-                                    _c(
-                                      "span",
-                                      [
-                                        _c("center", [
-                                          _vm._v("Lavacatienecuernos")
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "vs-row",
-                                { attrs: { "vs-justify": "center" } },
-                                [
-                                  _c("vs-input", {
-                                    attrs: {
-                                      success: true,
-                                      "success-text": "The text is valid",
-                                      placeholder: "Text"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "vs-collapse",
-                [
-                  _c(
-                    "vs-collapse-item",
-                    { attrs: { "icon-arrow": "label" } },
-                    [
-                      _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-                        _vm._v("Ejercicio 4")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "vs-row",
-                        { attrs: { "vs-justify": "center" } },
-                        [
-                          _c(
-                            "vs-col",
-                            {
-                              attrs: {
-                                type: "flex",
-                                "vs-justify": "center",
-                                "vs-align": "center",
-                                "vs-w": "6"
-                              }
-                            },
-                            [
-                              _c(
-                                "vs-card",
-                                {
-                                  staticClass: "cardx",
-                                  attrs: { actionable: "" }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      attrs: { slot: "header" },
-                                      slot: "header"
-                                    },
-                                    [_c("h3", [_vm._v("Separa las oraciones")])]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", [
-                                    _c(
-                                      "span",
-                                      [
-                                        _c("center", [
-                                          _vm._v("Misombreroesdecopa")
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "vs-row",
-                                { attrs: { "vs-justify": "center" } },
-                                [
-                                  _c("vs-input", {
-                                    attrs: {
-                                      success: true,
-                                      "success-text": "The text is valid",
-                                      placeholder: "Text"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
+            }),
             1
           )
-        ],
+        }),
         1
       )
     ],

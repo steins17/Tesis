@@ -6,5 +6,6 @@ use Illuminate\Support\Facades\Route;
 //put->actualizar
 //dele:-:::<braorra
 
+Route::get('/api/llamarpreguntas', 'NivelesController@preguntas');
 
 Route::get('/{any}', 'aplicacion')->where('any', '.*');
