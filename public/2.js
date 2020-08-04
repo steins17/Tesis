@@ -137,7 +137,7 @@ var render = function() {
                     attrs: { size: "70px", icon: "emoji_people" }
                   }),
                   _vm._v(" "),
-                  _c("h4", [_vm._v("Bienvenido a Lis")])
+                  _c("h4", [_vm._v("Bienvenido")])
                 ],
                 1
               ),

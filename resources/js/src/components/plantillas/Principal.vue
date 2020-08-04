@@ -14,7 +14,7 @@
         <div class="header-sidebar" slot="header">
           <vs-avatar size="70px" icon="emoji_people" />
 
-          <h4>Bienvenido a Lis</h4>
+          <h4>Bienvenido</h4>
         </div>
 
         <vs-sidebar-item index="1" icon="home">

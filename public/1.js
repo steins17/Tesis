@@ -74,121 +74,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       preguntas: [{
         nombre: "nivel 1",
-        foto: "",
-        audio: "a.vwm",
+        descripcion: "letras",
         subnivel: [{
           nombre: "subnivel 1",
-          foto: "",
-          audio: "",
-          preguntas: [{
-            nombre: "uno",
-            descripcion: "uno",
-            foto: "",
-            audio: ""
-          }, {
-            nombre: "dos",
-            descripcion: "dos",
-            foto: "",
-            audio: ""
-          }]
-        }, {
-          nombre: "subnivel 2",
-          foto: "",
-          audio: "",
-          preguntas: [{
-            nombre: "uno",
-            descripcion: "uno",
-            foto: "",
-            audio: ""
-          }, {
-            nombre: "dos",
-            descripcion: "dos",
-            foto: "",
-            audio: ""
-          }]
-        }]
-      }, {
-        nombre: "nivel 2",
-        descripcion: "nivel 2",
-        subnivel: [{
-          nombre: "subnivel 3",
-          descripcion: "subnivel 3",
+          descripcion: "subnivel 1",
           foto: null,
           audio: null,
           preguntas: [{
@@ -200,12 +95,51 @@ __webpack_require__.r(__webpack_exports__);
           }, {
             nombre: "dos",
             descripcion: "dos",
-            foto: "imagenes/b.png",
+            foto: "imagenes/d.png",
             tipo_campo: 2,
             audio: null
           }]
         }, {
-          nombre: "subnivel 4",
+          nombre: "subnivel 2",
+          foto: null,
+          audio: null,
+          preguntas: [{
+            nombre: "dos",
+            descripcion: "dos",
+            foto: "imagenes/p.png",
+            tipo_campo: 2,
+            audio: null
+          }, {
+            nombre: "dos",
+            descripcion: "dos",
+            foto: "imagenes/q.png",
+            tipo_campo: 2,
+            audio: null
+          }]
+        }]
+      }, {
+        nombre: "nivel 2",
+        descripcion: "silabas",
+        subnivel: [{
+          nombre: "subnivel 1",
+          descripcion: "subnivel 1",
+          foto: null,
+          audio: null,
+          preguntas: [{
+            nombre: "uno",
+            descripcion: "uno",
+            foto: "",
+            tipo_campo: 1,
+            audio: null
+          }, {
+            nombre: "dos",
+            descripcion: "dos",
+            foto: "",
+            tipo_campo: 2,
+            audio: null
+          }]
+        }, {
+          nombre: "subnivel 2",
           foto: null,
           audio: null,
           preguntas: [{
@@ -218,6 +152,39 @@ __webpack_require__.r(__webpack_exports__);
             descripcion: "dos",
             foto: null,
             audio: null
+          }]
+        }]
+      }, {
+        nombre: "nivel 3",
+        descripcion: "oraciones",
+        subnivel: [{
+          nombre: "subnivel 1",
+          descripcion: "separar oraciones",
+          preguntas: [{
+            nombre: "uno",
+            descripcion: "uno",
+            oraciones: "Miperroladramucho."
+          }]
+        }, {
+          nombre: "subnivel 2",
+          preguntas: [{
+            nombre: "dos",
+            descripcion: "dos",
+            oraciones: "Borjatienepecas."
+          }]
+        }, {
+          nombre: "subnivel 3",
+          preguntas: [{
+            nombre: "dos",
+            descripcion: "dos",
+            oraciones: "Lavacatienecuernos."
+          }]
+        }, {
+          nombre: "subnivel 4",
+          preguntas: [{
+            nombre: "dos",
+            descripcion: "dos",
+            oraciones: "Misombreroesdecopa."
           }]
         }]
       }]
@@ -358,14 +325,58 @@ var render = function() {
                                           : _vm._e()
                                       ]
                                     : [
-                                        _c("vs-input", {
-                                          attrs: {
-                                            success: true,
-                                            "success-text": "The text is valid",
-                                            placeholder: "Text"
-                                          }
-                                        })
+                                        pregunta.foto
+                                          ? _c(
+                                              "div",
+                                              {
+                                                attrs: { slot: "media" },
+                                                slot: "media"
+                                              },
+                                              [
+                                                _c("img", {
+                                                  attrs: { src: pregunta.foto }
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
                                       ],
+                                  _vm._v(" "),
+                                  [
+                                    _c("vs-button", {
+                                      attrs: {
+                                        color: "primary",
+                                        type: "gradient",
+                                        icon: "contactless"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    pregunta.oraciones
+                                      ? _c(
+                                          "div",
+                                          {
+                                            attrs: { slot: "media" },
+                                            slot: "media"
+                                          },
+                                          [
+                                            _c("center", [
+                                              _vm._v(_vm._s(pregunta.oraciones))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("br"),
+                                            _vm._v(" "),
+                                            _c("vs-input", {
+                                              attrs: {
+                                                success: true,
+                                                "success-text":
+                                                  "The text is valid",
+                                                placeholder: "Put the text"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e()
+                                  ],
                                   _vm._v(" "),
                                   _c("div", {
                                     attrs: { slot: "footer" },
