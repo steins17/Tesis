@@ -39,18 +39,20 @@
                   </div>
                 </vs-col>
                 <vs-col vs-justify="flex"  class="container" w="6">
-                  <div class="center content-inputs" v-for="(tr,index_hijo) in tr.respuestas" :key="index_hijo">
-                    <vs-input color="#195bff"  v-model="tr.respuesta_campo" :class="'w-100 mb-3 mt-5 index'+index" style="margin-bottom: 35px" @click="seleccionar_oraciones(index, tr, index_hijo)"/>
-                  </div>
-                  <div class="container" style=";display: block;">
-                    <vs-button  style="float: right;margin-right: 80px;margin-bottom: 20px;--vs-color: 25, 91, 255;border-radius: 70px;width: 40px;height: 40px;" @click="hablar(index)">
-                      <vs-tooltip circle>
-                        <i class="fas fa-microphone-alt fa-2x"></i>
-                        <template #tooltip>
-                          Hablar
-                        </template>
-                      </vs-tooltip>
-                    </vs-button>
+                  <div  v-for="(tr,index_hijo) in tr.respuestas" :key="index_hijo">
+                    <div class="center content-inputs">
+                      <vs-input color="#195bff"  v-model="tr.respuesta_campo" placeholder="Escribir" :class="'w-100 mb-3 mt-5 index'+index" style="margin-bottom: 35px" @click="seleccionar_oraciones(index, tr, index_hijo)"/>
+                    </div>
+                    <div class="container" style=";display: block;">
+                      <vs-button  style="float: right;margin-right: 80px;margin-bottom: 20px;--vs-color: 25, 91, 255;border-radius: 70px;width: 40px;height: 40px;" @click="hablar(index),seleccionar_oraciones(index, tr, index_hijo)">
+                        <vs-tooltip circle>
+                          <i class="fas fa-microphone-alt fa-2x"></i>
+                          <template #tooltip>
+                            Hablar
+                          </template>
+                        </vs-tooltip>
+                      </vs-button>
+                    </div>
                   </div>
                 </vs-col>
               </vs-row>
@@ -84,7 +86,7 @@
               </template>
                 Dar click en el botón azul, hablar y verificar si es correcto la oración.
             </vs-alert>
-            <div class="card m-3" style="border-radius: 50px" v-for="(tr,index) in frases.preguntas" :key="index">
+            <div class="card m-3" style="border-radius: 50px" v-for="(tr,index1) in frases.preguntas" :key="index1">
               <vs-row>
                 <vs-col vs-type="flex" vs-justify="center" vs-align="center" style="margin: 30px">
                   <div class="card-head text-center" style="margin-bottom: 12px">
@@ -92,18 +94,20 @@
                   </div>
                 </vs-col>
                 <vs-col vs-justify="flex" class="container" w="6">
-                  <div class="center content-inputs" v-for="(tr,index_h) in tr.respuestas" :key="index_h">
-                    <vs-input color="#195bff"  v-model="tr.respuesta_campo" :class="'w-100  mb-3 mt-5 index'+index"  placeholder="Escribir" style="margin-bottom: 35px" @click="seleccionar_frases(index, tr, index_h)"/>
-                  </div>
-                  <div class="container" style="bottom: 0px;display: block;">
-                    <vs-button  style="float: right;margin-right: 80px;margin-bottom: 20px;--vs-color: 25, 91, 255;border-radius: 70px;width: 40px;height: 40px;" @click="hablarc(index)">
-                      <vs-tooltip circle>
-                        <i class="fas fa-microphone-alt fa-2x"></i>
-                        <template #tooltip>
-                          Hablar
-                        </template>
-                      </vs-tooltip>
-                    </vs-button>
+                  <div v-for="(tr,index_h) in tr.respuestas" :key="index_h">
+                    <div class="center content-inputs">
+                      <vs-input color="#195bff"  v-model="tr.respuesta_campo" :class="'w-100  mb-3 mt-5 index1'+index1"  placeholder="Escribir" style="margin-bottom: 35px" @click="seleccionar_frases(index, tr, index_h)"/>
+                    </div>
+                    <div class="container" style="bottom: 0px;display: block;">
+                      <vs-button  style="float: right;margin-right: 80px;margin-bottom: 20px;--vs-color: 25, 91, 255;border-radius: 70px;width: 40px;height: 40px;" @click="hablarc(index1),seleccionar_frases(index1, tr, index_h)">
+                        <vs-tooltip circle>
+                          <i class="fas fa-microphone-alt fa-2x"></i>
+                          <template #tooltip>
+                            Hablar
+                          </template>
+                        </vs-tooltip>
+                      </vs-button>
+                    </div>
                   </div>
                 </vs-col>
               </vs-row>
@@ -354,6 +358,7 @@ export default {
           title: 'Debes responder',
           text: 'Debes seleccionar una de las respuestas'
         });
+        return;
       }
       for(var i=0; i<this.variable_seleccionado.length; i++){
         if($.isEmptyObject(this.variable_seleccionado[i])){
@@ -391,6 +396,7 @@ export default {
           title: 'Debes responder',
           text: 'Debes seleccionar una de las respuestas'
         });
+        return;
       }
       for(var i=0; i<this.variable_seleccionado.length; i++){
         if($.isEmptyObject(this.variable_seleccionado[i])){
@@ -447,9 +453,9 @@ export default {
       rec.start();
       setTimeout(() => {
         return;
-      }, 10000);
+      }, 3000);
     },
-    hablarc(index){
+    hablarc(index1){
       let rec;
         if (!("webkitSpeechRecognition" in window)) {
           alert("disculpas, no puedes usar la API");
@@ -463,14 +469,14 @@ export default {
         let me = this;
         function iniciar(event){
           for (let i = event.resultIndex; i < event.results.length; i++){
-            me.frases.preguntas[index].respuestas[0].respuesta_campo = event.results[i][0].transcript;
-            $('.index'+index).children('div').children('input').val(event.results[i][0].transcript);
+            me.frases.preguntas[index1].respuestas[0].respuesta_campo = event.results[i][0].transcript;
+            $('.index1'+index1).children('div').children('input').val(event.results[i][0].transcript);
           }
         }
       rec.start();
       setTimeout(() => {
         return;
-      }, 3000);
+      }, 10000);
     },
     usuario(){
       if(localStorage.getItem("token")){
