@@ -192,7 +192,7 @@ export default {
   },
   data() {
     return {
-      baseURL: "http://localhost:8000/api",
+      baseURL: "https://jenkins.giothcode.com/api",
       es: es,
       form: {
         id: "",
