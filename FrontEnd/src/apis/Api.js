@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let BaseApi = axios.create({
-  baseURL: "https://jenkins.giothcode.com/api"
+  baseURL: "https://giothcode.com/api"
 });
 
 let Api = function() {

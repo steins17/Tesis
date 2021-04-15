@@ -442,7 +442,7 @@ moment.locale("es");
 export default {
   data() {
     return {
-      baseURL: "https://jenkins.giothcode.com/api",
+      baseURL: "https://giothcode.com/api",
       letras:{
         preguntas:[],
       },
