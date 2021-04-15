@@ -192,7 +192,7 @@ export default {
   },
   data() {
     return {
-      baseURL: "http://3.138.190.20:3000/api",
+      baseURL: "https://jenkins.giothcode.com/api",
       es: es,
       form: {
         id: "",
