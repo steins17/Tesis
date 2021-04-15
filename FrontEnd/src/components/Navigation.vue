@@ -245,7 +245,7 @@
       'dropdown-menu':DropdownMenu
     },
     data: () => ({
-      baseURL: "https://jenkins.giothcode.com/api",
+      baseURL: "http://18.222.209.146/api",
       open: true, 
       hover:true, 
       reduce:true, 
