@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let BaseApi = axios.create({
-  baseURL: "http://18.222.209.146/api",
+  baseURL: "http://18.222.209.146:3000/api",
 });
 
 let Api = function() {

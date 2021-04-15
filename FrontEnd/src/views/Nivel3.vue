@@ -375,7 +375,7 @@ moment.locale("es");
 export default {
   data(){
     return{
-      baseURL: "http://18.222.209.146/api",
+      baseURL: "http://18.222.209.146:3000/api",
       letras:{
         preguntas:[],
       },

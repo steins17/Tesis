@@ -245,7 +245,7 @@
       'dropdown-menu':DropdownMenu
     },
     data: () => ({
-      baseURL: "http://18.222.209.146/api",
+      baseURL: "http://18.222.209.146:3000/api",
       open: true, 
       hover:true, 
       reduce:true, 
