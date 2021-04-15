@@ -43,7 +43,7 @@ return [
 
         'beanstalkd' => [
             'driver' => 'beanstalkd',
-            'host' => 'jenkins.giothcode.com',
+            'host' => 'localhost',
             'queue' => 'default',
             'retry_after' => 90,
             'block_for' => 0,

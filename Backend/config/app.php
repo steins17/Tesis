@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://jenkins.giothcode.com'),
+    'url' => env('APP_URL', '"http:// 3.138.190.20:3000/api",'),
 
     'asset_url' => env('ASSET_URL', null),
 
